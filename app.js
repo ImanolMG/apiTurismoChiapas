@@ -26,10 +26,10 @@ app.use(cors())
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/roles',rolesRouter);
-app.use('/lugares',lugaresRouter);
-app.use('/hoteles',hotelesRouter);
-app.use('/restaurantes',restaurantesRouter);
+app.use('/roles', rolesRouter);
+app.use('/lugares', lugaresRouter);
+app.use('/hoteles', hotelesRouter);
+app.use('/restaurantes', restaurantesRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

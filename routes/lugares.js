@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const rolesService = require('../controllers/lugaresService') //Cambiar
-
+const lugaresService = require('../controllers/lugaresService')
 const jwt = require('jsonwebtoken')
 const configuration = require('../ConfigServer')
 
@@ -22,5 +21,6 @@ router.use('/', (req, res, next) => {
     })
 })
 
-
+router.post('/agregar', lugaresService.agregar)
+router.get('/getAllLugares',lugaresService.getAllLugares);
 module.exports = router;

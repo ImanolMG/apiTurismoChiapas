@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const rolesService = require('../controllers/rolesService') //Cambiar
-
 const jwt = require('jsonwebtoken')
 const configuration = require('../ConfigServer')
 
