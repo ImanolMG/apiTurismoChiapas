@@ -22,4 +22,18 @@ module.exports = {
         })
     },
 
+    deleteLugar: (idLugares, callback) => {
+        let sql = 'DELETE FROM lugares WHERE idLugares = ?'
+        bd.query(sql,idLugares, (err, data) => {
+            console.log("err =>",err)
+            console.log("data =>",data)
+            try {
+                if (err) throw new Err('Error en la eliminación')
+                return callback(data)
+            }
+            catch (Err) {
+                return callback(null)
+            }
+        })
+    }
 };

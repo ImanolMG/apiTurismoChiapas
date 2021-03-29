@@ -53,9 +53,29 @@ const agregar = (req, res) => {
 }
 
 
+const deleteLugar = (req, res) => {
+    lugaresDAO.deleteLugar(req.params.idLugares, data => {
+        try {
+            if (!data) throw new Err("Hubo un error en el proceso")
+            if (data.affectedRows === 0) throw new Err(`Falló la eliminación del lugar :(: ${req.params.idLugares}`)
+            res.send({
+                status: true,
+                message: `Eliminación de lugar: ${req.params.idLugares} fue exitosa`
+            })
+        }
+        catch (Err) {
+            res.send({
+                status: false,
+                message: '<Personalizar el mensaje de error'
+            })
+        }
+    })
+}
+
 
 module.exports = {
 agregar,
-getAllLugares
+getAllLugares,
+    deleteLugar
 
 }
