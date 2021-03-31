@@ -27,7 +27,8 @@ const agregar = (req, res) => {
             idLugares : req.body.idLugares,
             nombre : req.body.nombre,
             descripcion : req.body.descripcion,
-            imagen : req.body.imagen
+            imagen : req.body.imagen,
+            ubicacion: req.body.ubicacion
         }
         lugaresDAO.insertLugar(lugar, (data) => {
             res.send({
