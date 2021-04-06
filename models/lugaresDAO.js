@@ -21,7 +21,17 @@ module.exports = {
                 callback(null)
         })
     },
+    getLugar: (idLugares, callback) =>{
+        let sql = 'SELECT * FROM lugares WHERE idLugares = ?'
+        bd.query(sql, idLugares, (err, data) => {
+            if (err) throw err
 
+            if (data.length>0)
+                callback(data)
+            else
+                callback(null)
+        })
+    },
     deleteLugar: (idLugares, callback) => {
         let sql = 'DELETE FROM lugares WHERE idLugares = ?'
         bd.query(sql,idLugares, (err, data) => {

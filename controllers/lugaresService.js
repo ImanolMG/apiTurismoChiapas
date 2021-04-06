@@ -19,6 +19,24 @@ const getAllLugares = (req, res)=> {
     })
 }
 
+const getLugar = (req, res)=> {
+    lugaresDAO.getLugar(req.params.idLugares, (data) => {
+        try{
+            console.log('Data =>',data)
+            if(!data) throw new Err("No hay lugar")
+            res.send({
+                status: true, data: data
+            })
+        }
+        catch (Err){
+            console.log('Data =>',data)
+            res.send({
+                status: false,
+                message: 'Usuarios disponibles'
+            })
+        }
+    })
+}
 const agregar = (req, res) => {
     console.log('Agregar => in')
 
@@ -77,6 +95,6 @@ const deleteLugar = (req, res) => {
 module.exports = {
 agregar,
 getAllLugares,
-    deleteLugar
-
+    deleteLugar,
+getLugar
 }
