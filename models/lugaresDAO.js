@@ -11,7 +11,7 @@ module.exports = {
         })
     },
     getAllLugares: (callback) =>{
-        let sql = 'SELECT * FROM lugares'
+        let sql = 'SELECT * FROM lugares ORDER BY rand() LIMIT 6'
         bd.query(sql, (err, data) => {
             if (err) throw err
 
