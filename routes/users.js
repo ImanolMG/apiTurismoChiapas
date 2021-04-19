@@ -28,6 +28,8 @@ router.use('/', (req, res, next) => {
 router.get('/usernameValidate/:username',usersService.usernameValidate);
 router.get('/getUser/:idUser',usersService.getUser);
 router.get('/getAllUsers',usersService.getAllUsers);
+router.delete('/deleteUser/:idUser', usersService.deleteUser);
 router.post('/signup', usersService.signup)
+router.post('/agregar', usersService.agregar)
 router.post('/login',usersService.login)
 module.exports = router;

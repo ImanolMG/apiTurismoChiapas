@@ -8,7 +8,7 @@ const generateToken = (user) => {
         name: user.nombre
     }
 
-    return jwt.sign(userToken,configurationServer.jwt.secret,{ expiresIn: 60 * 60 })
+    return jwt.sign(userToken,configurationServer.jwt.secret,{ expiresIn: 60 * 60 * 60})
 }
 
 module.exports = {

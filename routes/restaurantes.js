@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const rolesService = require('../controllers/restaurantesService') //Cambiar
+const restaurantesService = require('../controllers/restaurantesService') //Cambiar
 
 const jwt = require('jsonwebtoken')
 const configuration = require('../ConfigServer')
@@ -23,5 +23,10 @@ router.use('/', (req, res, next) => {
 })
 
 
+router.post('/agregar', restaurantesService.agregar)
+router.put('/editar', restaurantesService.editarRestaurante)
+router.get('/getAllRestaurantes', restaurantesService.getAllRestaurantes);
+router.delete('/deleteRestaurante/:idRestaurantes', restaurantesService.deleteRestaurante);
+router.get('/getRestaurante/:idRestaurantes', restaurantesService.getRestaurante)
 
 module.exports = router;

@@ -27,7 +27,7 @@ const getAllUsers = (req, res)=> {
             console.log('Data =>',data)
             if(!data) throw new Err("No hay usuario")
             res.send({
-                status: true, body: data
+                status: true, data: data
             })
         }
         catch (Err){
@@ -95,6 +95,42 @@ const signup = (req, res) => {
 
 }
 
+
+
+const agregar = (req, res) => {
+    console.log('Signup => in')
+
+    if (req.user) {
+        const user = {
+            idUser : req.body.idUser,
+            idRol : req.body.idRol,
+            nombre : req.body.nombre,
+            apellidoPaterno : req.body.apellidoPaterno,
+            username : req.body.username,
+            password : bcrypt.hashSync(req.body.password,10)
+        }
+        userDAO.insertNewUser(user, (data) => {
+            res.send({
+                status: true,
+                message: 'Usuario creado exitosamente'
+            })
+        }, err => {
+            res.send({
+                status:false,
+                message: 'Ha ocurrido un error al crear la cuenta de usuario',
+                errorMessage: err
+            })
+        })
+    }
+    else {
+        res.send({
+            status:false,
+            message: 'Este servicio requiere el uso de un Token válido, contactar al administrador',
+            error: '100. Falta token'
+        })
+    }
+
+}
 const login = (req,res) => {
     let username = req.body.username
     let password = req.body.password
@@ -122,9 +158,34 @@ const login = (req,res) => {
     })
 }
 
+const deleteUser = (req, res) => {
+    userDAO.deleteUser(req.params.idUser, data => {
+        try {
+            if (!data) throw new Err("Hubo un error en el proceso")
+            if (data.affectedRows === 0) throw new Err(`Falló la eliminación del usuario :(: ${req.params.idUser}`)
+            res.send({
+                status: true,
+                message: `Eliminación del usuario: ${req.params.idUser} fue exitosa`
+            })
+        }
+        catch (Err) {
+            res.send({
+                status: false,
+                message: '<Personalizar el mensaje de error'
+            })
+        }
+    })
+
+
+
+}
+
+
 module.exports = {
     usernameValidate,
     getUser,
+    agregar,
+    deleteUser,
     getAllUsers,
     signup,
 login
