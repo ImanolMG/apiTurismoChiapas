@@ -1,26 +1,26 @@
 const bd = require('../configMysql')
-//ORDER BY rand() LIMIT 6
+
 module.exports = {
-    insertLugar : (lugar, callback)=>{
-        let sql = 'INSERT INTO lugares SET ?'
-        bd.query(sql,lugar,(err,data) => {
+    insertHopedaje : (hospedaje, callback)=>{
+        let sql = 'INSERT INTO hospedajes SET ?'
+        bd.query(sql,hospedaje,(err,data) => {
             if(err)
                 return callback(null)
             else
                 return callback (data)
         })
     },
-    updateLugar : (lugar, callback)=>{
-        let sql = 'UPDATE lugares SET ? WHERE = idLugares = ?'
-        bd.query(sql,lugar,(err,data) => {
+    updateHospedaje : (hospedaje, callback)=>{
+        let sql = 'UPDATE hospedajes SET ? WHERE = idHospedajes = ?'
+        bd.query(sql,hospedaje,(err,data) => {
             if(err)
                 return callback(null)
             else
                 return callback (data)
         })
     },
-    getAllLugares: (callback) =>{
-        let sql = 'SELECT * FROM lugares '
+    getAllHospedajes: (callback) =>{
+        let sql = 'SELECT * FROM hospedajes'
         bd.query(sql, (err, data) => {
             if (err) throw err
 
@@ -30,9 +30,9 @@ module.exports = {
                 callback(null)
         })
     },
-    getLugar: (idLugares, callback) =>{
-        let sql = 'SELECT * FROM lugares WHERE idLugares = ?'
-        bd.query(sql, idLugares, (err, data) => {
+    getHospedaje: (idHospedajes, callback) =>{
+        let sql = 'SELECT * FROM hospedajes WHERE idHospedajes = ?'
+        bd.query(sql, idHospedajes, (err, data) => {
             if (err) throw err
 
             if (data.length>0)
@@ -41,9 +41,9 @@ module.exports = {
                 callback(null)
         })
     },
-    deleteLugar: (idLugares, callback) => {
-        let sql = 'DELETE FROM lugares WHERE idLugares = ?'
-        bd.query(sql,idLugares, (err, data) => {
+    deleteHospedaje: (idHospedajes, callback) => {
+        let sql = 'DELETE FROM hospedajes WHERE idHospedajes = ?'
+        bd.query(sql,idHospedajes, (err, data) => {
             console.log("err =>",err)
             console.log("data =>",data)
             try {
@@ -55,4 +55,6 @@ module.exports = {
             }
         })
     }
+
+
 };

@@ -1,7 +1,8 @@
-const lugaresDAO = require('../models/lugaresDAO')
+const hospedajesDAO = require('../models/hospedajesDAO')
 
-const getAllLugares = (req, res)=> {
-    lugaresDAO.getAllLugares(data => {
+
+const getAllHospedajes = (req, res)=> {
+    hospedajesDAO.getAllHospedajes(data => {
         try{
             console.log('Data =>',data)
             if(!data) throw new Err("No hay usuario")
@@ -19,8 +20,8 @@ const getAllLugares = (req, res)=> {
     })
 }
 
-const getLugar = (req, res)=> {
-    lugaresDAO.getLugar(req.params.idLugares, (data) => {
+const getHospedaje = (req, res)=> {
+    hospedajesDAO.getHospedaje(req.params.idHospedajes, (data) => {
         try{
             console.log('Data =>',data)
             if(!data) throw new Err("No hay lugar")
@@ -41,23 +42,24 @@ const agregar = (req, res) => {
     console.log('Agregar => in')
 
     if (req.user) {
-        const lugar = {
-            idLugares : req.body.idLugares,
+        const hospedaje = {
+            idHospedajes : req.body.idHospedajes,
             nombre : req.body.nombre,
             descripcion : req.body.descripcion,
+            ubicacion: req.body.ubicacion,
+            costo : req.body.costo,
             imagen : req.body.imagen,
-            ubicacion: req.body.ubicacion
-
+            tipoHospedaje : req.body.tipoHospedaje
         }
-        lugaresDAO.insertLugar(lugar, (data) => {
+        hospedajesDAO.insertHopedaje(hospedaje, (data) => {
             res.send({
                 status: true,
-                message: 'Lugar agregado exitosamente'
+                message: 'Hospedaje agregado exitosamente'
             })
         }, err => {
             res.send({
                 status:false,
-                message: 'Ha ocurrido un error al agregar lugar',
+                message: 'Ha ocurrido un error al agregar el hospedaje',
                 errorMessage: err
             })
         })
@@ -71,17 +73,19 @@ const agregar = (req, res) => {
     }
 
 }
-const editarLugar = (req, res) => {
+const editarHospedaje = (req, res) => {
     console.log('Editar => in')
     if (req.user) {
-        const lugar = {
-            idLugares : req.body.idLugares,
+        const hospedaje = {
+            idHospedajes : req.body.idHospedajes,
             nombre : req.body.nombre,
             descripcion : req.body.descripcion,
+            ubicacion: req.body.ubicacion,
+            costo : req.body.costo,
             imagen : req.body.imagen,
-            ubicacion: req.body.ubicacion
+            tipoHospedaje : req.body.tipoHospedaje
         }
-        lugaresDAO.updateLugar(lugar, (data) => {
+        hospedajesDAO.updateHospedaje(hospedaje, (data) => {
             res.send({
                 status: true,
                 message: 'Lugar editado exitosamente'
@@ -104,14 +108,14 @@ const editarLugar = (req, res) => {
 
 }
 
-const deleteLugar = (req, res) => {
-    lugaresDAO.deleteLugar(req.params.idLugares, data => {
+const deleteHospedaje = (req, res) => {
+    hospedajesDAO.deleteHospedaje(req.params.idHospedajes, data => {
         try {
             if (!data) throw new Err("Hubo un error en el proceso")
-            if (data.affectedRows === 0) throw new Err(`Falló la eliminación del lugar :(: ${req.params.idLugares}`)
+            if (data.affectedRows === 0) throw new Err(`Falló la eliminación del hospedaje :(: ${req.params.idHospedajes}`)
             res.send({
                 status: true,
-                message: `Eliminación de lugar: ${req.params.idLugares} fue exitosa`
+                message: `Eliminación del hospedaje: ${req.params.idHospedajes} fue exitosa`
             })
         }
         catch (Err) {
@@ -125,9 +129,11 @@ const deleteLugar = (req, res) => {
 
 
 module.exports = {
-agregar,
-getAllLugares,
-    deleteLugar,
-    editarLugar,
-getLugar
+    agregar,
+    getAllHospedajes,
+    deleteHospedaje,
+    editarHospedaje,
+    getHospedaje
 }
+
+

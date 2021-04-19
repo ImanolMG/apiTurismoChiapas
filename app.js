@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const rolesRouter = require('./routes/roles');
 const lugaresRouter = require('./routes/lugares');
-const hotelesRouter = require('./routes/hoteles');
+const hospedajesRouter = require('./routes/hospedajes');
 const restaurantesRouter = require('./routes/restaurantes');
 var app = express();
 
@@ -28,7 +28,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/roles', rolesRouter);
 app.use('/lugares', lugaresRouter);
-app.use('/hoteles', hotelesRouter);
+app.use('/hospedajes', hospedajesRouter);
 app.use('/restaurantes', restaurantesRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

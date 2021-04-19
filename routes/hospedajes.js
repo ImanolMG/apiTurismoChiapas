@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const rolesService = require('../controllers/hotelesService') //Cambiar
+const hospedajeService = require('../controllers/hospedajeService') //Cambiar
 
 const jwt = require('jsonwebtoken')
 const configuration = require('../ConfigServer')
@@ -22,5 +22,11 @@ router.use('/', (req, res, next) => {
     })
 })
 
+
+router.post('/agregar', hospedajeService.agregar)
+router.put('/editar', hospedajeService.editarHospedaje)
+router.get('/getAllHospedajes', hospedajeService.getAllHospedajes);
+router.delete('/deleteHospedaje/:idHospedajes', hospedajeService.deleteHospedaje);
+router.get('/getHospedaje/:idHospedajes', hospedajeService.getHospedaje)
 
 module.exports = router;
