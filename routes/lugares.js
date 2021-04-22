@@ -24,6 +24,7 @@ router.use('/', (req, res, next) => {
 router.post('/agregar', lugaresService.agregar)
 router.put('/editar', lugaresService.editarLugar)
 router.get('/getAllLugares',lugaresService.getAllLugares);
+router.get('/getLugaresRecomendados',lugaresService.getLugaresRecomendados);
 router.delete('/deleteLugar/:idLugares', lugaresService.deleteLugar);
 router.get('/getLugar/:idLugares', lugaresService.getLugar)
 module.exports = router;

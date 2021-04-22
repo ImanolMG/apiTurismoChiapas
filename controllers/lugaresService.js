@@ -19,6 +19,24 @@ const getAllLugares = (req, res)=> {
     })
 }
 
+const getLugaresRecomendados = (req, res)=> {
+    lugaresDAO.getLugaresRecomendados(data => {
+        try{
+            console.log('Data =>',data)
+            if(!data) throw new Err("No hay usuario")
+            res.send({
+                status: true, data: data
+            })
+        }
+        catch (Err){
+            console.log('Data =>',data)
+            res.send({
+                status: false,
+                message: 'Usuarios disponibles'
+            })
+        }
+    })
+}
 const getLugar = (req, res)=> {
     lugaresDAO.getLugar(req.params.idLugares, (data) => {
         try{
@@ -128,6 +146,7 @@ module.exports = {
 agregar,
 getAllLugares,
     deleteLugar,
+    getLugaresRecomendados,
     editarLugar,
 getLugar
 }

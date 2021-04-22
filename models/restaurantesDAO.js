@@ -31,7 +31,7 @@ module.exports = {
         })
     },
     getRestaurante: (idRestaurantes, callback) =>{
-        let sql = 'SELECT * FROM restaurante WHERE idRestaurantes = ?'
+        let sql = 'SELECT * FROM restaurantes WHERE idRestaurantes = ?'
         bd.query(sql, idRestaurantes, (err, data) => {
             if (err) throw err
 

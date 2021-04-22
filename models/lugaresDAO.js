@@ -30,6 +30,17 @@ module.exports = {
                 callback(null)
         })
     },
+    getLugaresRecomendados: (callback) =>{
+        let sql = 'SELECT * FROM lugares ORDER BY rand() LIMIT 6 '
+        bd.query(sql, (err, data) => {
+            if (err) throw err
+
+            if (data.length>0)
+                callback(data)
+            else
+                callback(null)
+        })
+    },
     getLugar: (idLugares, callback) =>{
         let sql = 'SELECT * FROM lugares WHERE idLugares = ?'
         bd.query(sql, idLugares, (err, data) => {
