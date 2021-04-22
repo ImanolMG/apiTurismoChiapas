@@ -64,7 +64,7 @@ const getUser  = (req, res)=> {
 const signup = (req, res) => {
     console.log('Signup => in')
 
-    if (req.user) {
+
         const user = {
             idRol : req.body.idRol,
             nombre : req.body.nombre,
@@ -84,14 +84,8 @@ const signup = (req, res) => {
                 errorMessage: err
             })
         })
-    }
-    else {
-        res.send({
-            status:false,
-            message: 'Este servicio requiere el uso de un Token válido, contactar al administrador',
-            error: '100. Falta token'
-        })
-    }
+
+
 
 }
 
