@@ -26,7 +26,8 @@ router.use('/', (req, res, next) => {
 
 
 router.get('/usernameValidate/:username',usersService.usernameValidate);
-router.get('/getUser/:idUser',usersService.getUser);
+router.get('/getUser/:username',usersService.getUser);
+router.get('/getIdRol/:username',usersService.getIdRol);
 router.get('/getAllUsers',usersService.getAllUsers);
 router.delete('/deleteUser/:idUser', usersService.deleteUser);
 router.post('/signup', usersService.signup)

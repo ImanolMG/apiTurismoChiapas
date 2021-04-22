@@ -24,14 +24,14 @@ module.exports = {
         })
     },
 
-    getUser: (idUser, callback) => {
-        let sql = 'SELECT nombre, apellidoPaterno, username FROM user WHERE idUser=?'
-        bd.query(sql, idUser, (err, data) => {
+    getUser: (username, callback) => {
+        let sql = 'SELECT nombre, apellidoPaterno FROM user WHERE username=?'
+        bd.query(sql, username, (err, data) => {
 
             if (err) throw err
 
             if (data.length > 0)
-                callback(data[0])
+                callback(data)
             else
                 callback(null)
         })
@@ -68,7 +68,19 @@ module.exports = {
                 return callback(null)
             }
         })
-    }
+    },
 
+    getIdRol: (username, callback) => {
+        let sql = 'SELECT idRol FROM user WHERE username=?'
+        bd.query(sql, username, (err, data) => {
+
+            if (err) throw err
+
+            if (data.length > 0)
+                callback(data)
+            else
+                callback(null)
+        })
+    },
 
 }

@@ -11,6 +11,8 @@ const generateToken = (user) => {
     return jwt.sign(userToken,configurationServer.jwt.secret,{ expiresIn: 60 * 60 * 60})
 }
 
+
+
 module.exports = {
     generateToken
 }

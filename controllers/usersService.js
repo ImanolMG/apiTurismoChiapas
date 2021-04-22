@@ -40,12 +40,12 @@ const getAllUsers = (req, res)=> {
     })
 }
 const getUser  = (req, res)=> {
-    userDAO.getUser(req.params.idUser, (data) =>{
+    userDAO.getUser(req.params.username, (data) =>{
         try{
             console.log('Data =>',data)
             if(!data) throw new Err("No hay usuario")
             res.send({
-                status: true, body: data,
+                status: true, data: data,
 
 
             })
@@ -176,8 +176,26 @@ const deleteUser = (req, res) => {
         }
     })
 
+}
 
+const getIdRol  = (req, res)=> {
+    userDAO.getIdRol(req.params.username, (data) =>{
+        try{
+            console.log('Data =>',data)
+            if(!data) throw new Err("No hay idRol")
+            res.send({
+                status: true, data: data
+            })
+        }
+        catch (Err){
+            console.log('Data =>',data)
+            res.send({
+                status: false,
+                message: 'IdRol disponible'
 
+            })
+        }
+    })
 }
 
 
@@ -186,6 +204,7 @@ module.exports = {
     getUser,
     agregar,
     deleteUser,
+    getIdRol,
     getAllUsers,
     signup,
 login
